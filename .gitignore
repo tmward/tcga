@@ -1,1 +1,3 @@
 output/*
+# placeholder to have git keep output directory
+!output/.gitkeepdir
