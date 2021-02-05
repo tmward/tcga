@@ -31,7 +31,8 @@ table_1 <- function(df) {
             tumor_location_Right.colon,
             pos_margin_YES,
             lvi_YES,
-            msi_pos
+            msi_pos,
+            surv_status_5_yr
         ) %>%
         mutate(
             tumor_location = if_else(
@@ -49,7 +50,8 @@ table_1 <- function(df) {
                 metastases_YES ~ "Metastatic disease",
                 lvi_YES ~ "Lymphovascular invasion",
                 pos_margin_YES ~ "R1/R2 margin",
-                msi_pos ~ "Microsatellite unstable"
+                msi_pos ~ "Microsatellite unstable",
+                surv_status_5_yr ~ "Deaths at 5 years"
             )
         ) %>%
         modify_header(update = list(label ~ "**Variable**"))
