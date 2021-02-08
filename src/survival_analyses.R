@@ -32,6 +32,7 @@ table_1 <- function(df) {
             pos_margin_YES,
             lvi_YES,
             msi_pos,
+            surv_months_5_yr,
             surv_status_5_yr
         ) %>%
         mutate(
@@ -51,7 +52,8 @@ table_1 <- function(df) {
                 lvi_YES ~ "Lymphovascular invasion",
                 pos_margin_YES ~ "R1/R2 margin",
                 msi_pos ~ "Microsatellite unstable",
-                surv_status_5_yr ~ "Deaths at 5 years"
+                surv_status_5_yr ~ "Deaths (within 5 years)",
+                surv_months_5_yr ~ "Follow-up time"
             )
         ) %>%
         modify_header(update = list(label ~ "**Variable**"))
@@ -302,3 +304,4 @@ inputs %>% multivariate_data() %>% multivariate_coxph() %>% save_gt_table("coxph
 inputs %>% lasso_data() %>% lasso() %>% sli() %>% sli_table() %>% save_gt_table("coxph_lasso.html")
 # summarise patients
 inputs %>% table_1() %>% save_gt_table("table_1.html")
+inputs %>% table_1()
