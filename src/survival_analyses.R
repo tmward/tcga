@@ -5,6 +5,7 @@ suppressPackageStartupMessages(library(glmnet))
 suppressPackageStartupMessages(library(survival))
 suppressPackageStartupMessages(library(gtsummary))
 suppressPackageStartupMessages(library(survminer))
+suppressPackageStartupMessages(library(magrittr))
 
 suppressMessages(theme_gtsummary_journal(journal = "jama"))
 suppressMessages(theme_gtsummary_compact())
@@ -74,14 +75,33 @@ univariate_data <- function(df) {
 }
 
 
-km_plot <- function(df) {
-    surv_mod <- survfit(
-        Surv(surv_months_5_yr, surv_status_5_yr) ~ Side,
-        data = df
-    )
-    ggsurvplot(
-        surv_mod,
+surv_mod <- function(df) {
+    list(
         data = df,
+        fit = survfit(
+            Surv(surv_months_5_yr, surv_status_5_yr) ~ Side,
+            data = df
+        )
+    )
+}
+
+
+save_km_table <- function(model) {
+    tbl_survfit(
+        model$fit,
+        times = seq.int(12, 60, 12),
+        label = "Survival",
+        label_header = "{time} months"
+    ) %>%
+    modify_header(update = list(label ~ "")) %>%
+    save_gt_table("survival_probabilities_rl.html")
+}
+
+
+km_plot <- function(model) {
+    ggsurvplot(
+        model$fit,
+        data = model$data,
         palette = c("#B57EDC", "#FF0000"),
         risk.table = TRUE,
         legend.labs = c("Left", "Right"),
@@ -294,8 +314,9 @@ sli_table <- function(sli_results) {
 
 
 inputs <- read_rds("../output/model_inputs.rds")
-# KM plot, R vs L
-inputs %>% univariate_data() %>% km_plot() %>% save_surv_plot("km_plot.png")
+# KM plot, and survival probs, R vs L
+inputs %>% univariate_data() %>% surv_mod() %T>% save_km_table() %>% km_plot() %>%
+    save_surv_plot("km_plot.png", height = 7.5, width = 6)
 # Univariate coxph including testing model assumptions
 inputs %>% univariate_data() %>% univariate_coxph() %>% save_gt_table("coxph_univariate_table.html")
 # multivariate with TNM, R, site, and testing model assumptions
@@ -304,4 +325,3 @@ inputs %>% multivariate_data() %>% multivariate_coxph() %>% save_gt_table("coxph
 inputs %>% lasso_data() %>% lasso() %>% sli() %>% sli_table() %>% save_gt_table("coxph_lasso.html")
 # summarise patients
 inputs %>% table_1() %>% save_gt_table("table_1.html")
-inputs %>% table_1()
