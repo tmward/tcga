@@ -61,7 +61,7 @@ table_1 <- function(df) {
 }
 
 
-univariate_data <- function(df) {
+univariable_data <- function(df) {
     df %>%
         select(
             tumor_location_Right.colon,
@@ -118,14 +118,14 @@ km_plot <- function(model) {
 }
 
 
-univariate_coxph <- function(df) {
+univariable_coxph <- function(df) {
     surv_mod <- coxph(
         Surv(surv_months_5_yr, surv_status_5_yr) ~ Side,
         data = df
     )
     # save Schoenfeld residual plots testing for Coxph assumptions
-    ggcoxzph(cox.zph(surv_mod), caption = "Univariate Cox") %>%
-        save_surv_plot("coxph_univariate_schoen.png")
+    ggcoxzph(cox.zph(surv_mod), caption = "Univariable Cox") %>%
+        save_surv_plot("coxph_univariable_schoen.png")
 
     # make table showing regression results
     surv_mod %>%
@@ -138,7 +138,7 @@ univariate_coxph <- function(df) {
 }
 
 
-multivariate_data <- function(df) {
+multivariable_data <- function(df) {
     df %>%
         select(
             tumor_location_Right.colon,
@@ -154,15 +154,15 @@ multivariate_data <- function(df) {
 }
 
 
-multivariate_coxph <- function(df) {
+multivariable_coxph <- function(df) {
     surv_mod <- coxph(
         Surv(surv_months_5_yr, surv_status_5_yr) ~ .,
         data = df
     )
     # save Schoenfeld residual plots testing for Coxph assumptions
-    ggcoxzph(cox.zph(surv_mod), caption = "Multivariate Cox") %>%
+    ggcoxzph(cox.zph(surv_mod), caption = "Multivariable Cox") %>%
         save_surv_plot(
-            "coxph_multivariate_schoen.png",
+            "coxph_multivariable_schoen.png",
             width = 25,
             height = 12,
             units = "in"
@@ -315,12 +315,12 @@ sli_table <- function(sli_results) {
 
 inputs <- read_rds("../output/model_inputs.rds")
 # KM plot, and survival probs, R vs L
-inputs %>% univariate_data() %>% surv_mod() %T>% save_km_table() %>% km_plot() %>%
+inputs %>% univariable_data() %>% surv_mod() %T>% save_km_table() %>% km_plot() %>%
     save_surv_plot("km_plot.png", height = 7.5, width = 6)
-# Univariate coxph including testing model assumptions
-inputs %>% univariate_data() %>% univariate_coxph() %>% save_gt_table("coxph_univariate_table.html")
-# multivariate with TNM, R, site, and testing model assumptions
-inputs %>% multivariate_data() %>% multivariate_coxph() %>% save_gt_table("coxph_multivariate_table.html")
+# Univariable coxph including testing model assumptions
+inputs %>% univariable_data() %>% univariable_coxph() %>% save_gt_table("coxph_univariable_table.html")
+# multivariable with TNM, R, site, and testing model assumptions
+inputs %>% multivariable_data() %>% multivariable_coxph() %>% save_gt_table("coxph_multivariable_table.html")
 # lasso regression with TNM, R, mutations
 inputs %>% lasso_data() %>% lasso() %>% sli() %>% sli_table() %>% save_gt_table("coxph_lasso.html")
 # summarise patients
