@@ -64,13 +64,20 @@ them in a browser then copy and paste them into Word.
 Requires `tidy_tcga.R` then `make_inputs.R` to be run first. This script
 will take `model_inputs.rds` and output:
 
+1. Table with lasso regression for 5-yr survival results
+
+### `causal_analyses.R`
+
+Requires `tidy_tcga.R` then `make_inputs.R` to be run first. This script
+will take `model_inputs.rds` and output:
+
 1. Table 1
-2. Table with univariate R vs L and 5-yr survival Cox PH results
+2. Table with total effect of R vs L on 5-yr survival Cox PH results
 3. Schoenfeld residual plots for the above analysis
-4. Table with multivariate R vs L and 5-yr survival Cox PH results
+4. Table with total effect of genetics on 5-yr survival Cox PH results
 5. Schoenfeld residual plots for the above analysis
-6. Table with lasso regression for 5-yr survival results
-7. Plot of KM curve of R vs L and 5-yr survival
+6. Plot of KM curve of R vs L and 5-yr survival
+7. Table with survival statistics each year of follow-up
 
 All tables are HTML tables. To use in Microsoft Word, it is best to open
 them in a browser then copy and paste them into Word.
