@@ -82,7 +82,8 @@ analyses_data <- function(df) {
         rm_t_n_5_yr_nas() %>%
         keep_analyses_cols() %>%
         missing_to_na() %>%
-        group_mut_subtypes()
+        group_mut_subtypes() %>%
+        mutate(gene = if_else(gene == "muc", "muc16", gene))
 }
 
 

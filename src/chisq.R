@@ -9,8 +9,6 @@ suppressMessages(theme_gtsummary_compact())
 get_chisq_input <- function() {
     read_rds("../output/analyses_data_tidy.rds") %>%
         mutate(
-            # omission of muc type
-            gene = if_else(gene == "muc", "muc16", gene),
             classification = parse_factor(
                 classification,
                 levels = c("Wild type", "Mutated")
