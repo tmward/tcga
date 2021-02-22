@@ -9,37 +9,6 @@ suppressMessages(theme_gtsummary_journal(journal = "jama"))
 suppressMessages(theme_gtsummary_compact())
 
 
-table1 <- function(df) {
-    tbl1_vars <- c(
-        "stage_t",
-        "stage_n",
-        "metastases_YES",
-        "tumor_location_Right.colon",
-        "pos_margin_YES",
-        "lvi_YES",
-        "msi_pos",
-        "surv_months_5_yr",
-        "surv_status_5_yr"
-    )
-    df %>%
-        select(all_of(tbl1_vars)) %>%
-        mutate(
-            tumor_location_Right.colon = if_else(
-                tumor_location_Right.colon == 0,
-                "Left colon",
-                "Right colon"
-            ),
-            .keep = "unused"
-        ) %>%
-        tbl_summary(
-            by = "tumor_location_Right.colon",
-            label = tbl_labels(tbl1_vars)
-        ) %>%
-        modify_header(update = list(label ~ "**Variable**"))
-}
-
-
-
 # tbl_regression() only wants "label" to include variables that are
 # present in the data. This will take the vars in the model and return
 # the appropriate human readable labels
@@ -276,8 +245,6 @@ total_effect_g_on_surv <- function(df) {
 
 
 inputs <- read_rds("../output/model_inputs.rds")
-# Summarise patients
-inputs %>% table1() %>% save_gt_table("table_1.html")
 # Causal: direct effect RL -> all paths -> survival
 rl_to_surv(inputs)
 # Causal: total effect G -> survival
