@@ -62,7 +62,7 @@ chisq_summary_by_location <- function(df, by_var, span_label) {
 location_and_mutation <- function() {
     get_chisq_input() %>%
         chisq_df(classification, tumor_location) %>%
-        chisq_summary_by_location("tumor_location", "**Tumor Sidedness**")
+        chisq_summary_by_location("tumor_location", "**Tumor Site**")
 }
 
 
