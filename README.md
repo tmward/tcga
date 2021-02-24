@@ -6,8 +6,8 @@ Surgeons (ASCRS) Annual Scientific Meeting presentation, number SP45,
 titled: "Tumor Genotypes Account for Survival Differences in Right and
 Left-sided Colon Cancers". This presentation will be presented in the
 Plenary Abstract Session III: Colorectal Cancer and Other Neoplasia.
-Additionally, it will be submitted for consideration to Diseases of the
-Colon and Rectum.
+Additionally, it was submitted for publication consideration to Diseases
+of the Colon and Rectum.
 
 # Overview of repository contents
 
@@ -26,10 +26,19 @@ figures.
 All scripts expect that they are executed with a working directory of
 `src` (e.g., should type `./script.R` to execute, *not* `src/script.R`).
 
+All tables produced are HTML tables. To use in Microsoft Word, it is
+best to open them in a browser then copy and paste them into Word.
+
+All plots are in png format. Graphic size and format is easy to tweak by
+changing the script.
+
+All file outputs are put into the `../output/` directory with self-explanatory
+names.
+
 ### `tidy_tcga.R`
 
 Cleans and tidies the CSV holding information on all CRC obtained from
-TCGA. Will save a serialized R object (.rds) for a tibble holding
+TCGA. Will save a serialized R object (`.rds`) for a tibble holding
 tidied information with patient characteristics and genetics and
 a separate tibble holding information on MSI. It only keeps patient data
 when the patient has information on a primary CRC tumor and completed
@@ -37,7 +46,7 @@ genetic mutation data.
 
 ### `make_inputs.R`
 
-Produces two R objects from the previously tidied patient and msi
+Produces two R objects from the previously tidied patient and MSI
 data produced by `tidy_tcga.R`. Notably, it only keeps data for patients
 with a right or left colon cancer and completed information for use in
 survival analyses (so more than 0 months of follow-up) and completed T
@@ -56,9 +65,6 @@ chi-squared tests of independence. Requires `tidy_tcga.R` then
 1. Tumor sidedness versus gene mutational status
 2. Nodal positivity (N0 vs N1+) versus gene mutational status
 
-All tables are HTML tables. To use in Microsoft Word, it is best to open
-them in a browser then copy and paste them into Word.
-
 ### `survival_analyses.R`
 
 Requires `tidy_tcga.R` then `make_inputs.R` to be run first. This script
@@ -71,22 +77,19 @@ will take `model_inputs.rds` and output:
 Requires `tidy_tcga.R` then `make_inputs.R` to be run first. This script
 will take `model_inputs.rds` and output:
 
-1. Table 1
-2. Table with total effect of R vs L on 5-yr survival Cox PH results
-3. Schoenfeld residual plots for the above analysis
-4. Table with total effect of genetics on 5-yr survival Cox PH results
-5. Schoenfeld residual plots for the above analysis
-6. Plot of KM curve of R vs L and 5-yr survival
-7. Table with survival statistics each year of follow-up
+1. Table with total effect of R vs L on 5-yr survival Cox PH results
+2. Schoenfeld residual plots for the above analysis
+3. Table with total effect of genetics on 5-yr survival Cox PH results
+4. Schoenfeld residual plots for the above analysis
+5. Plot of KM curve of R vs L and 5-yr survival
+6. Table with survival statistics each year of follow-up
 
-All tables are HTML tables. To use in Microsoft Word, it is best to open
-them in a browser then copy and paste them into Word.
+### `table1.R`
 
-All plots are in png. Graphic size and format is easy to tweak by
-changing the script.
+Requires the outputs from `tidy_tcga.R` and `make_inputs.R`. It takes
+`model_inputs.rds` and `tidied.rds` and outputs:
 
-All file outputs are put into "../output/" directory with self-explanatory
-names.
+1. Table 1 in the paper
 
 # sessionInfo
 
