@@ -91,6 +91,12 @@ Requires the outputs from `tidy_tcga.R` and `make_inputs.R`. It takes
 
 1. Table 1 in the paper
 
+## `presentation` folder
+
+Contains the files needed to re-create the slides for the oral presentation
+I gave at the meeting. Slides were created in R markdown using the
+[`xarigan`](https://github.com/yihui/xaringan) package.
+
 # sessionInfo
 
 All analyses were run in the following environment:
