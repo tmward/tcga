@@ -1,3 +1,6 @@
 output/*
 # placeholder to have git keep output directory
 !output/.gitkeepdir
+xaringan-themer.css
+presentation/presentation_files/
+presentation/presentation.html

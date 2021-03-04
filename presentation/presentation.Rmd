@@ -1,0 +1,387 @@
+---
+title: "Tumor Genotypes Account for Survival Differences in Right and Left-sided Colon Cancers"
+subtitle: "ASCRS Annual Scientific Meeting"
+author: Thomas Ward, MD<br/> Massachusetts General Hospital
+date: April 25, 2021
+output: 
+    xaringan::moon_reader:
+        css: [ "xaringan-themer.css", "tmw-theme.css" ]
+        nature:
+            countIncrementalSlides: false
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#208CA8",
+  header_font_google = google_font("Raleway"),
+  text_font_google   = google_font("Lato", "300", "300i"),
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.5rem"
+  #code_font_google   = google_font("Fira Mono")
+)
+```
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE} 
+library(fontawesome)
+library(tidyverse)
+library(broom)
+library(survival)
+library(survminer)
+library(gtsummary)
+library(showtext)
+
+font_add_google("Lato")
+theme_gtsummary_journal(journal = "jama")
+theme_gtsummary_compact()
+theme_set(theme_light(base_family = "Lato"))
+```
+ 
+
+# Disclosures
+
+Research support from the Olympus Corporation.
+
+---
+
+background-image: url(imgs/TCGA.svg)
+background-size: contain
+
+# The Cancer Genome Atlas (TCGA)
+
+.pull-right[.smallish[
+```{r, echo = FALSE}
+table1 <- function(df) {
+    tbl1_vars <- c(
+        "diagnosis_age",
+        "sex",
+        "stage_t",
+        "stage_n",
+        "metastases_YES",
+        "tumor_location_Right.colon",
+        "pos_margin_YES",
+        "lvi_YES",
+        "msi_pos",
+        "surv_months_5_yr",
+        "surv_status_5_yr"
+    )
+    df %>%
+        select(all_of(tbl1_vars)) %>%
+        mutate(
+            tumor_location = parse_factor(
+                if_else(tumor_location_Right.colon == 0,
+                    "Left",
+                    "Right"
+                ),
+                levels = c("Right", "Left")
+            ),
+            .keep = "unused"
+        ) %>%
+        tbl_summary(
+            by = "tumor_location",
+            label = list(
+                diagnosis_age ~ "Age",
+                sex ~ "Sex",
+                stage_t ~ "T stage",
+                stage_n ~ "N stage",
+                metastases_YES ~ "Metastases",
+                pos_margin_YES ~ "R1/R2 Margin",
+                lvi_YES ~ "Lymphovascular invasion",
+                msi_pos ~ "Microsatellite instability",
+                surv_status_5_yr ~ "Deaths (within 5 years)",
+                surv_months_5_yr ~ "Follow-up time"
+            )
+        ) %>%
+        modify_header(update = list(label ~ "**Variable**")) %>%
+        modify_spanning_header(c("stat_1", "stat_2") ~ "**Tumor Site**")
+}
+
+inputs <- read_rds("../output/model_inputs.rds")
+age_sex <- read_rds("../output/tidied.rds") %>%
+    distinct(caseid, diagnosis_age, sex) %>%
+    mutate(sex = fct_drop(sex))
+# Summarise patients
+inputs %>%
+    inner_join(age_sex, by = "caseid") %>%
+    table1() %>%
+    as_kable()
+```
+]]
+
+---
+
+class: center
+
+# .left[Right-sided colon cancer has worse survival]
+
+```{r, echo = FALSE, dev = "svg", fig.width = 6, fig.height = 4}
+inputs <- read_rds("../output/model_inputs.rds") %>%
+    select(ends_with("_5_yr"), tumor_location_Right.colon) %>%
+    mutate( 
+        Side = if_else(tumor_location_Right.colon == 0, "Left", "Right"),
+        .keep = "unused"
+    ) 
+fit <- survfit(
+        Surv(surv_months_5_yr, surv_status_5_yr) ~ Side,
+        data = inputs
+    )
+hr_table <- tbl_survfit(
+        fit,
+        times = seq.int(12, 60, 12),
+        label = "Survival",
+        label_header = "{time} months"
+    ) %>%
+    modify_header(update = list(label ~ ""))
+ggsurvplot(
+        fit,
+        data = inputs,
+        palette = c("#B57EDC", "#FF0000"),
+        legend.labs = c("Left", "Right"),
+        xlab = "Time (months)",
+        break.time.by = 12,
+        ylim = c(0.50, 1.0),
+        font.family = "Lato",
+        pval = TRUE,
+        pval.coord = c(0, 0.65),
+        pval.method = TRUE,
+        pval.method.coord = c(0, 0.7)
+    )
+```
+
+HR 1.71 (95% CI 1.10-2.64, p = 0.017)
+
+---
+
+class: center
+background-image: url(imgs/total_effect.svg)
+background-size: contain
+
+# Causal analysis
+
+---
+
+class: center
+background-image: url(imgs/rl_gene.svg)
+background-size: contain
+
+# Total effect of colon site on mutations
+
+---
+
+class: center, middle
+
+class: center
+
+# Does a mutation preferentially occur in the right or left colon?
+
+```{r, echo = FALSE}
+dat <- read_rds("../output/model_inputs.rds")
+genes <- dat %>%
+    select(tumor_location_Right.colon, ends_with("Mutated")) %>%
+    mutate(
+        site = if_else(tumor_location_Right.colon == 1, "Right", "Left"),
+        .keep = "unused"
+    ) %>%
+    pivot_longer(
+        ends_with("Mutated"),
+        names_to = "gene",
+        values_to = "is_mutated"
+    ) %>%
+    mutate(gene = str_to_upper(str_remove(gene, "_Mutated")))
+```
+
+```{r, echo = FALSE, eval = FALSE}
+genes %>%
+    distinct(gene) %>%
+    arrange(gene) %>%
+    pull(gene) %>%
+    datapasta::vector_paste_vertical()
+```
+
+```{r, echo = FALSE}
+sig_muts <- c("CSMD3",
+  "FAT3",
+  "FAT4",
+  "MUC16",
+  "NEB",
+  "OBSCN",
+  "PCLO",
+  "PI3K",
+  "SYNE1",
+  "TP53",
+  "USH2A",
+  "ZFH")
+
+# hacky. to specify two colors for ggplot needs to call a function to
+# determine the palette. I'm only calling this with n = 2 so just return
+# the palate (lavender, red), ignoring the n
+lav_red <- function(n) {
+    c("#B57EDC", "#FF0000")
+}
+```
+
+```{r, echo = FALSE, dev = "svg", fig.width = 6, fig.height = 4}
+genes %>%
+    group_by(gene, site) %>%
+    summarise(
+        prop_mutated = mean(is_mutated),
+        n_mutated = sum(is_mutated),
+        .groups = "drop_last"
+    ) %>%
+    arrange(gene, site) %>%
+    # left is row 1 of the gene group, right is row 2
+    summarise(
+        r_to_l = prop_mutated[2] / prop_mutated[1],
+        tot_mut = sum(n_mutated)
+    ) %>%
+    mutate(
+        gene = if_else(gene %in% sig_muts, str_c("*", gene), gene),
+        gene = fct_reorder(gene, r_to_l)
+    ) %>%
+    ggplot(aes(r_to_l, y = gene)) +
+    geom_errorbarh(aes(xmin = 1, xmax = r_to_l, height = 0)) +
+    geom_point(aes(size = tot_mut, color = r_to_l > 1)) +
+    scale_color_discrete(
+        guide = FALSE,
+        palette = lav_red
+    ) +
+    scale_x_log10() +
+    labs(size = "Total # of\nmutated cases",
+         x = "Prevalence in Right-sided cases / Prevalence in Left-sided cases",
+         y = ""
+     )
+```
+
+.left[.small[Asterixed genes preferentially mutate at a particular site (Holm corrected q-value < 0.05).]]
+
+---
+
+class: center
+background-image: url(imgs/gene_effect.svg)
+background-size: contain
+
+# Total effect of genetic loci on survival
+
+---
+
+class: center
+
+# Total effect of genetic loci on survival
+
+```{r, echo = FALSE, dev = "svg", fig.width = 7, fig.height = 5}
+dat <- read_rds("../output/model_inputs.rds") %>%
+    select(
+        ends_with("_5_yr"),
+        tumor_location_Right.colon,
+        apc_Mutated,
+        tp53_Mutated,
+        ttn_Mutated,
+        syne1_Mutated,
+        obscn_Mutated,
+        zfh_Mutated,
+        muc16_Mutated,
+        ush2a_Mutated,
+        dnah5_Mutated,
+        neb_Mutated,
+        pclo_Mutated,
+        flg_Mutated,
+        dnah11_Mutated,
+        smad4_Mutated,
+        msi_pos
+    )
+coxph(Surv(surv_months_5_yr, surv_status_5_yr) ~ ., data = dat) %>%
+    tidy(exponentiate = TRUE, conf.int = TRUE) %>%
+    filter(str_detect(term, "Mutated")) %>%
+    mutate(
+        term = fct_reorder(str_to_upper(str_remove(term, "_Mutated")), estimate),
+        rl_gene = parse_factor(
+            if_else(term %in% sig_muts, "Yes", "No"),
+            levels = c("Yes", "No")
+        )
+    ) %>%
+    ggplot(aes(estimate, y = term, color = rl_gene)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), size = 0.25) +
+    scale_x_log10() +
+    #scale_color_viridis_d(end = 0.75, direction = 1) +
+    scale_color_viridis_d(end = .75, direction = -1, option = "A") +
+    geom_vline(aes(xintercept = 1.0), linetype = 2, size = 0.25) +
+    labs(
+        y = "",
+        x = "Hazard ratio (95% CI)",
+        color = "Preferentially mutates\non the right or left:"
+    )
+```
+
+---
+
+class:center
+
+# Predictive survival model: Lasso
+
+```{r, echo = FALSE, dev = "svg", fig.width = 7, fig.height = 5}
+# lasso results taken from lasso_analyses.R
+tibble::tribble(
+             ~term,         ~estimate,          ~conf.low,        ~conf.high,            ~p.value, ~rl_gene,
+         "T stage",  2.05686604126692,   1.13505386583091,  3.27013609986856,  0.0270529147468546, "Not applicable",
+         "N stage",  1.75361342631089,   1.27283496012112,  2.12072017460165, 0.00126033446479703, "Not applicable",
+  "Metastases",  1.76680467621176,   1.15126111380377,   3.9103424506684,  0.0248675855110258, "Not applicable",
+  "R1/R2 margin",  1.74492195540736,  0.736313877911111,  7.27158012715689,  0.0840357438046316, "Not applicable",
+   "DNAH5", 0.368914447921771, 0.0714393377547714, 0.670281990135984,  0.0244992058843885, "No",
+     "FLG",  1.51015446252825,  0.189653708267556,  5.41875687579131,   0.338507946161603, "No",
+   "MUC16",  2.06054903893223,   1.51171260722716,  8.14029590917705,  0.0111541898671412, "Yes",
+     "NEB",  1.48328757883264,  0.145118850433971,  4.77879734860357,   0.323165061346625, "Yes",
+   "OBSCN", 0.486024767683175,  0.126321463581873,  2.39237507499758,   0.198714415135617, "Yes",
+   "SMAD4",  1.61023060009939,  0.582574086225194,  5.61516362508399,   0.123397618620772, "No",
+   "SYNE1",  1.54810469681527,  0.453615678739649,  5.62125056140885,   0.204948214602332, "Yes",
+     "TTN",   1.3523556287732,  0.014078347957565,  2.14499083073978,   0.675230459471812, "No",
+   "USH2A",  1.79995154189151,  0.804743048010579,  5.85875012433942,  0.0785008487789284, "Yes"
+    ) %>%
+    mutate(
+        term = fct_reorder(term, estimate),
+        rl_gene = parse_factor(rl_gene, levels = c("Yes", "Not applicable", "No"))
+    ) %>%
+    ggplot(aes(estimate, y = term, color = rl_gene)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), size = 0.25) +
+    scale_x_log10() +
+    scale_color_viridis_d(end = .75, direction = -1, option = "A") +
+    geom_vline(aes(xintercept = 1.0), linetype = 2, size = 0.25) +
+    labs(
+        y = "",
+        x = "Hazard ratio (95% CI)",
+        color = "Preferentially mutates\non the right or left:"
+    )
+```
+
+---
+
+# Genetic mutations affect overall survival<br/>and account for much of survival differences across tumor site.
+
+--
+
+## Potential targets:
+
+- Basic science research
+- Targeted therapeutics
+- Personalized systemic therapy
+
+## More precise patient prognostication:
+
+- Move beyond TNM staging alone
+
+---
+
+class: center, middle
+
+# Questions?
+
+`r fa("paper-plane")` [tmward@mgh.harvard.edu](mailto:tmward@mgh.harvard.edu)
+
+`r fa("github")` [@tmward](https://github.com/tmward)
+
+`r fa("twitter")` [@thomas_m_ward](https://twitter.com/thomas_m_ward)
+
+`r fa("link")` [thomasward.com](https://thomasward.com)
+
+`r fa("map-marker")` [MGH Department of Surgery](https://www.massgeneral.org/surgery/)

@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1280"
+   height="720"
+   style="font-family:Arial, sans-serif"
+   version="1.1"
+   id="svg5232"
+   sodipodi:docname="gene_effect.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata5238">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5236">
+    <rect
+       x="140.17874"
+       y="605.93437"
+       width="976.61207"
+       height="88.373859"
+       id="rect7472" />
+    <rect
+       x="126.65199"
+       y="577.91816"
+       width="990.98293"
+       height="123.21972"
+       id="rect7466" />
+    <rect
+       x="153.46133"
+       y="592.26112"
+       width="990.21556"
+       height="119.49446"
+       id="rect7460" />
+    <rect
+       x="237.33557"
+       y="599.80234"
+       width="884.94546"
+       height="99.263628"
+       id="rect7377" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview5234"
+     showgrid="false"
+     inkscape:zoom="0.55994358"
+     inkscape:cx="709"
+     inkscape:cy="566.12846"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g9541"
+     inkscape:document-rotation="0" />
+  <g
+     transform="matrix(1.8876045,0,0,1.8876045,1009.9944,310.74978)"
+     id="g5222"
+     style="stroke-width:1.00020952;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     xml:space="preserve"
+     id="text7375"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Lato;-inkscape-font-specification:'Lato, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect7377);"
+     transform="matrix(1.2539476,0,0,1,-180.96406,0)" />
+  <text
+     xml:space="preserve"
+     id="text7458"
+     style="line-height:1.25;font-family:Lato;font-size:39.99987411px;-inkscape-font-specification:'Lato, Normal';white-space:pre;shape-inside:url(#rect7460);" />
+  <text
+     xml:space="preserve"
+     id="text7464"
+     style="line-height:1.25;font-family:Lato;font-size:39.99987411px;-inkscape-font-specification:'Lato, Normal';white-space:pre;shape-inside:url(#rect7466);" />
+  <text
+     xml:space="preserve"
+     id="text7470"
+     style="line-height:1.25;font-family:Lato;font-size:24px;-inkscape-font-specification:'Lato, Normal';white-space:pre;shape-inside:url(#rect7472);font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;"><tspan
+       x="140.17969"
+       y="628.25359"><tspan>G: tumor genetics; MSI: microsatellite instability; NPGSF: Non-pathologic/genetic survival </tspan></tspan><tspan
+       x="140.17969"
+       y="658.25359"><tspan>factors; PF: patient factors; RL: tumor site; SM: Surgical margin; TNM: Tumor stage. Grey: </tspan></tspan><tspan
+       x="140.17969"
+       y="688.25359"><tspan>unobserved variable; Blue: ancestor of outcome; Maroon: outcome; White: adjusted variable.</tspan></tspan></text>
+  <g
+     class="path"
+     id="g9409"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="none"
+       d="m 595.94,152.79 173.64,-2.17"
+       id="path9405" />
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(179.28545,384.32138,77.711767)"
+       id="path9407" />
+  </g>
+  <g
+     class="path"
+     id="g9415"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="none"
+       d="M 561.07,142.98 Q 530.97,117.99 555.94,96.4"
+       id="path9411" />
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(139.15848,260.02625,151.69164)"
+       id="path9413" />
+  </g>
+  <g
+     class="path"
+     id="g9421"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="m 519.08,236.84 43.33,-67.13"
+       id="path9417" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(122.84397,234.98319,238.03226)"
+       id="path9419" />
+  </g>
+  <g
+     class="path"
+     id="g9427"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="M 527.46,244.47 Q 736.07,177.99 772.42,159.48"
+       id="path9423" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(153.02315,367.08361,172.37986)"
+       id="path9425" />
+  </g>
+  <g
+     class="path"
+     id="g9433"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="m 807.6,228.02 q 59.44,-57.05 10.82,-71.72"
+       id="path9429" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(16.785193,-120.4919,2851.7813)"
+       id="path9431" />
+  </g>
+  <g
+     class="path"
+     id="g9439"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="M 421.45,172.7 551.19,155.74"
+       id="path9435" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(172.54881,270.5226,95.813102)"
+       id="path9437" />
+  </g>
+  <g
+     class="path"
+     id="g9445"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="m 417.22,184.31 71.63,53.33"
+       id="path9441" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(-143.3356,283.79716,37.830087)"
+       id="path9443" />
+  </g>
+  <g
+     class="path"
+     id="g9451"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="M 435.31,90.34 553.46,144.4"
+       id="path9447" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(-155.41572,292.46001,11.901419)"
+       id="path9449" />
+  </g>
+  <g
+     class="path"
+     id="g9457"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="M 404.68,95.04 Q 279.02,227.95 483.83,247.59"
+       id="path9453" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(-174.52353,247.83398,112.22497)"
+       id="path9455" />
+  </g>
+  <g
+     class="path"
+     id="g9463"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="none"
+       d="M 437.49,83.52 H 549.9"
+       id="path9459" />
+    <path
+       stroke="#000000"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(180,274.95213,41.761249)"
+       id="path9461" />
+  </g>
+  <g
+     class="path"
+     id="g9469"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="none"
+       d="M 745.47,88.76 Q 775,96.79 786.5,131.47"
+       id="path9465" />
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(-108.35201,440.7053,-218.13597)"
+       id="path9467" />
+  </g>
+  <g
+     class="path"
+     id="g9475"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="none"
+       d="m 594.9,83.64 106.38,0.74"
+       id="path9471" />
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(-179.60104,350.7885,40.969109)"
+       id="path9473" />
+  </g>
+  <g
+     class="path"
+     id="g9481"
+     style="font-family:Arial, sans-serif"
+     transform="matrix(1.8885958,0,0,1.7896973,-490.51058,42.169292)">
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="none"
+       d="m 593.76,88.55 177.14,55.5"
+       id="path9477" />
+    <path
+       stroke="#4dac26"
+       stroke-width="1.5"
+       fill="#ffffff"
+       class="arrowfront"
+       d="M -1,0 15,5 V -5 Z"
+       transform="rotate(-162.6032,396.46786,13.053052)"
+       id="path9479" />
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,597.21743,315.99835)"
+     id="g9491"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#bed403"
+       stroke="#000000"
+       id="path9483" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="12.46875"
+       height="17"
+       x="-6.234375"
+       y="21"
+       id="rect9485" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9487">G</text>
+    <path
+       d="M -4,-6 7,0 -4,6 Z"
+       fill="#000000"
+       id="path9489" />
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,470.19786,488.97737)"
+     id="g9499"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#ffffff"
+       stroke="#000000"
+       id="path9493" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="28.46875"
+       height="17"
+       x="-14.234375"
+       y="21"
+       id="rect9495" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9497">MSI</text>
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,1008.9496,469.8844)"
+     id="g9507"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#dddddd"
+       stroke="#aaaaaa"
+       id="path9501" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="55.359375"
+       height="17"
+       x="-27.5625"
+       y="21"
+       id="rect9503" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9505">NPGSF</text>
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,268.06764,355.1634)"
+     id="g9515"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#dddddd"
+       stroke="#aaaaaa"
+       id="path9509" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="20.6875"
+       height="17"
+       x="-10.234375"
+       y="21"
+       id="rect9511" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9513">PF</text>
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,297.9546,191.64928)"
+     id="g9523"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#ffffff"
+       stroke="#000000"
+       id="path9517" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="20.5625"
+       height="17"
+       x="-10.234375"
+       y="21"
+       id="rect9519" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9521">RL</text>
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,881.14356,193.44434)"
+     id="g9531"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#00a2e0"
+       stroke="#00a2e0"
+       id="path9525" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="24"
+       height="17"
+       x="-12"
+       y="21"
+       id="rect9527" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9529">SM</text>
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,1010.1294,311.26591)"
+     id="g9541"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#00a2e0"
+       stroke="#000000"
+       id="path9533"
+       style="fill:#aa0000;fill-opacity:0.69999999" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="56.90625"
+       height="17"
+       x="-28.453125"
+       y="21"
+       id="rect9535" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9537">Survival</text>
+    <path
+       d="M -2,-6 H 2 V 6 h -4 z"
+       fill="#000000"
+       id="path9539" />
+  </g>
+  <g
+     transform="matrix(1.8885958,0,0,1.7896973,595.25119,191.64928)"
+     id="g9549"
+     style="font-family:Arial, sans-serif">
+    <path
+       fill-opacity="0.7"
+       stroke-width="2"
+       z-index="1"
+       d="M 0,0 M 20,0 A 20,15 0 1 1 -20,0 20,15 0 1 1 20,0"
+       fill="#00a2e0"
+       stroke="#00a2e0"
+       id="path9543" />
+    <rect
+       class="textbg"
+       fill="#ffffff"
+       width="34.65625"
+       height="17"
+       x="-17.328125"
+       y="21"
+       id="rect9545" />
+    <text
+       class="nodelabel"
+       y="35"
+       text-anchor="middle"
+       id="text9547">TNM</text>
+  </g>
+</svg>
