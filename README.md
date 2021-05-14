@@ -4,10 +4,10 @@ This repository holds software used to perform analyses and generate
 figures/tables for the 2021 American Society of Colon and Rectal
 Surgeons (ASCRS) Annual Scientific Meeting presentation, number SP45,
 titled: "Tumor Genotypes Account for Survival Differences in Right and
-Left-sided Colon Cancers". This presentation will be presented in the
+Left-sided Colon Cancers". This presentation was presented in the
 Plenary Abstract Session III: Colorectal Cancer and Other Neoplasia.
-Additionally, it was submitted for publication consideration to Diseases
-of the Colon and Rectum.
+Additionally, it was submitted for publication consideration to
+Colorectal Disease.
 
 # Overview of repository contents
 
