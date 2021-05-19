@@ -6,8 +6,7 @@ Surgeons (ASCRS) Annual Scientific Meeting presentation, number SP45,
 titled: "Tumor Genotypes Account for Survival Differences in Right and
 Left-sided Colon Cancers". This presentation was presented in the
 Plenary Abstract Session III: Colorectal Cancer and Other Neoplasia.
-Additionally, it was submitted for publication consideration to
-Colorectal Disease.
+Additionally, it was submitted for publication consideration.
 
 # Overview of repository contents
 
